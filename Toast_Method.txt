@@ -1,0 +1,81 @@
+.xml file :
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#F5F5DC"
+    tools:context=".MainActivity">
+
+    <!-- Card container for unique look -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:contentPadding="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type a message..."
+                android:inputType="text"
+                android:minHeight="48dp" />
+
+            <Button
+                android:id="@+id/displayButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Display Toast" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>
+
+
+
+MainActivity.java
+
+package com.vc.vcapplication;
+
+import android.os.Bundle;
+
+import android.app.Activity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends Activity implements View.OnClickListener {
+
+    EditText e1;
+    Button b1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.toast_method);
+
+        e1 = (EditText) findViewById(R.id.EditText);
+        b1 = (Button) findViewById(R.id.displayButton);
+        b1.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+       Toast.makeText(this, e1.getText().toString(), Toast.LENGTH_LONG).show();
+    }
+}
